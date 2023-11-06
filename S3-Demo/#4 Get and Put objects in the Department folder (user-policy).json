@@ -1,0 +1,38 @@
+{
+    "Version": "2012-10-17",
+    "Statement":[
+        {
+            "Sid": "AllowGroupToSeeBucketListAndAllsoAlowGetBucketLocationRequiredForListBucket",
+            "Action": [ "s3:listAllMyBuckets", "s3:GetBucketLocation" ],
+            "Effect":"Allow",
+            "Resource": [ "arn:aws:s3:::*" ]
+        },
+        {
+            "Sid":"AllowRootLevelListingOfCompanyBucket",
+            "Action":[ "s3:ListBucket"],
+            "Effect":"Allow",
+            "Resource":[ "arn:aws:s3:::bucket_arn"],
+            "Condition":{
+                "StringEquals":{
+                    "s3:prefix":[""], "s3:delimiter":["/"]
+                }
+            }
+        },
+        {
+            "Sid": "AllowListBucketIfSpecificPrefixIsIncludedInRequest", "Action":["s3:ListBucket"],
+            "Effect":"Allow",
+            "Resource":[ "arn:aws:s3:::bucket_arn"],
+            "Condition": {
+                "StringLike":{"s3:prefix":["Department/*"]}
+            }
+
+        },
+        {
+            "Sid":"AllowUserToReadWriteObjectDtaInDpartmentFolder",
+            "Action":["s3:getObject", "s3:PutObject"],
+            "Effect":"Allow",
+            "Resource":["arn:aws:s3:::bucket_arn/Department/*"]
+        }
+    ]
+
+}

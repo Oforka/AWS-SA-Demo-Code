@@ -1,0 +1,21 @@
+{
+    "Version": "2012-10-17",
+    "Id": "BlockUnleet",
+    "Statement": [
+        {
+            "Sid":"",
+            "Effect":"Deny",
+            "Principal":"*",
+            "Action":"S3:*",
+            "Resource":"arn:aws:s3:::gocloudcareesdiscount/*",
+            "Condition":{ "Null": { "aws:MultiFactorAuthAge": true}}
+        },
+        {
+            "Sid":"therest",
+            "Effect":"Allow",
+            "Principal":"*",
+            "Action": ["s3:GetObject"],
+            "Resource":"arn:aws:s3:::gocloudcareesdiscount/*"
+        }
+    ]
+}

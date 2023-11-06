@@ -1,0 +1,17 @@
+{
+    "Version": "2012-10-17",
+    "Id": "BlockUnleet",
+    "Statement":[
+        {
+            "Sid":"IPAllow",
+            "Effect":"Deny",
+            "Principal":"*",
+            "Action":"s3:*",
+            "Resource":"arn:AWS:S3:::gocloudcareesdiscount/*",
+            "Condition":{
+                "NotIpAddress": {"aws:SourceIp": "10.3.3.8/32"}
+            }
+            
+        }
+    ]
+}

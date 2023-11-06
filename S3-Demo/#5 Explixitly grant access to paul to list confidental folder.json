@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Id": "policy1561964929358",
+    "Statement": [
+        {
+            "Sid": "Stmt1561964454052",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::182662811297:user/Paul"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::gocloud-demo-s3bucket",
+            "Condition": {
+                "StringLike": {
+                    "s3:prefix": "confidential/*"
+                }
+            }
+        }
+    ]
+}
